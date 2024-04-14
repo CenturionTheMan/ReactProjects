@@ -105,6 +105,11 @@ body{
     border-radius: var(--radius-medium);
 }
 
+.button-ex2{
+    width: 140px;
+}
+
+
 .primary:hover{
     background-color: var(--hover);
     color: var(--neutral);
@@ -142,6 +147,28 @@ body{
     row-gap: 48px;
     justify-content: flex-end;
 }
+
+.chip-right-ex2 {
+    background-color: var(--white);
+    padding: 8px 16px;
+    border-radius: var(--radius-small);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    column-gap: 8px;
+    justify-self: end;
+}
+
+
+.hero-details-ex2{
+    grid-column: 7/13;
+    display: flex;
+    flex-direction: column;
+    row-gap: 48px;
+    justify-content: flex-end;
+}
+
 .hero-image-container{
     border-radius: var(--radius-large);
     grid-column: 8/13;
@@ -153,6 +180,17 @@ body{
     background-size: cover;
 }
 
+.hero-image-container-ex2{
+    border-radius: var(--radius-large);
+    grid-column: 1/6;
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    background-image: url(./Assets/hero.jpg);
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: cover;
+}
 
 .title-large{
     font-family: var(--title-font);
@@ -162,6 +200,27 @@ body{
 .text-middle{
     font-size:var(--copy-large);
     line-height: 30px;
+}
+
+.text-large-ex2{
+    font-family: var(--title-font);
+    font-size: var(--title-large);
+    grid-column: 1/6;
+    display: flex;
+}
+
+.button-row-holder-ex2{
+    display: flex;
+    flex-direction: row;
+    column-gap: 12px;
+}
+
+.text-middle-ex2{
+    font-family: var(--title-font);
+    font-size: 50px;
+    grid-column: 1/6;
+    display: flex;
+    padding-bottom: 5vh;
 }
 
 .title-middle{
@@ -176,6 +235,7 @@ body{
     column-gap: 24px;
     justify-content: space-between;
 }
+
 
 .card-image {
     width: 100%;
@@ -248,8 +308,9 @@ body{
     padding-top: 100px;
     padding-left: 50px;
     width: 100%;
-    height: 250px;
     display: flex;
+    height: fit-content;
+    min-height: 30vh;
 }
 
 .entry-text{
@@ -350,6 +411,18 @@ body{
 
 @media screen and (max-width:768px) {
 
+    .text-middle-ex2{
+        grid-column: 1/9;
+    }
+
+    .hero-image-container-ex2{
+        grid-column: 1/9;
+    }
+
+    .entry-text{
+        font-size: 50;
+    }
+
     .hidden{
         display: inline;
     }
@@ -378,6 +451,12 @@ body{
     .hero-details{
         grid-column: 1/9;
     }
+
+    .hero-details-ex2{
+        grid-column: 1/9;
+    }
+
+
 
     .hero-image-container{
         display: none;
@@ -419,6 +498,14 @@ body{
 
 @media screen and (max-width:456px) {
 
+    .text-middle-ex2{
+        grid-column: 1/5;
+    }
+
+    .hero-image-container-ex2{
+        grid-column: 1/5;
+    }
+
     .hidden{
         display: inline;
     }
@@ -444,6 +531,10 @@ body{
     }
 
     .hero-details{
+        grid-column: 1/5;
+    }
+
+    .hero-details-ex2{
         grid-column: 1/5;
     }
 
