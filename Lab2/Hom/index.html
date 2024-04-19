@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Zadanie2</title>
+
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+
+  <body>
+    <div class="content">
+      <h2>To-do List</h2>
+      <div class="header-input">
+        <input type="text" id="inputField" placeholder="Add text ..." />
+        <button onclick="AddNewListItem()" class="add-button">Add</button>
+        <button
+          id="return-button"
+          onclick="ReturnItem()"
+          class="return-button-disable"
+        >
+          Return last deleted item
+        </button>
+      </div>
+
+      <div class="list-holder">
+        <ul id="list"></ul>
+      </div>
+    </div>
+
+    <script src="./script.js"></script>
+  </body>
+</html>

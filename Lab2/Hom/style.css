@@ -1,0 +1,133 @@
+/* Include the padding and border in an element's total width and height */
+* {
+  /* box-sizing: border-box; */
+  margin: 0;
+  padding: 0;
+}
+
+.list-holder {
+  width: 90vw;
+  padding-left: 5vw;
+  padding-right: 5vw;
+}
+
+ul {
+  list-style-type: none;
+  text-align: left;
+}
+
+.close-list-item {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 5%;
+}
+
+.close-list-item:hover {
+  background-color: red;
+  color: white;
+}
+
+.date-list-item {
+  /* width: 5%; */
+  position: absolute;
+  left: 0;
+  top: 0;
+  /* height: 100%; */
+  padding-left: 1%;
+  color: antiquewhite;
+}
+
+/* Style the list items */
+ul li {
+  cursor: pointer;
+  position: relative;
+  background: #eee;
+  font-size: 18px;
+  text-wrap: wrap;
+  padding: 1vh 4vw 1vh 1vw;
+  transition: 0.2s;
+  /* make the list items unselectable */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Darker background-color on hover */
+ul li:hover {
+  background: #ddd;
+}
+
+/* When clicked on, add a background color and strike out text */
+ul li.checked {
+  background: #888;
+  padding: 25px 4vw 1vh 1vw;
+  color: #fff;
+  text-decoration: line-through;
+}
+
+.content {
+  display: flex;
+  padding-top: 5vh;
+  flex-direction: column;
+  text-align: center;
+  width: 100%;
+  height: fit-content;
+}
+
+.header-input {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  padding-left: 5vw;
+  padding-right: 5vw;
+  width: 90vw;
+  height: fit-content;
+}
+
+/* Style the input */
+input {
+  border: black;
+  border-style: solid;
+  width: 75%;
+  padding: 10px;
+  float: left;
+  font-size: 16px;
+}
+
+/* Style the "Add" button */
+.add-button {
+  padding: 10px;
+  width: 25%;
+  background: #d9d9d9;
+  color: #555;
+  float: left;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.1s;
+  border-radius: 0;
+}
+
+.add-button:hover {
+  background-color: #a3c712;
+  color: white;
+}
+
+.return-button-enable {
+  width: 15vw;
+  background-color: coral;
+  transition: 0.2s;
+  text-decoration: double;
+}
+
+.return-button-enable:hover {
+  background-color: chocolate;
+}
+
+.return-button-disable {
+  width: 15vw;
+  background-color: gray;
+}
