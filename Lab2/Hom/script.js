@@ -1,29 +1,53 @@
+var listItemToRemove = null;
+var lastRemovedListItem = null;
+const list = document.getElementById("list");
+
 window.onload = () => {
-  var lastRemovedListItem = null;
-  let lastRemovedListItemPosition = -1;
-  const list = document.getElementById("list");
-  let wasLastButtonCtrl = false;
+  const delModal = document.getElementById("delete-modal");
 
   for (let index = 0; index < 10; index++) {
     const listItemToAdd = document.createElement("li");
-    listItemToAdd.innerText = `dad ias diua sdaisd ia sd awiuiwa id la  dw dluawk duialw dkaui id lakw d kau dwkka dkwadi fiuwaf aiu fiua efiu iw f awif i awkj dfkwajf kjwa k ed wak dakwlf dkja fkw fiawf uwa fjdaksf kljaw fdkwa fkajw fdkj f ja ${index}`;
+    listItemToAdd.innerText = CreateRandomText(50, 300);
     listItemToAdd.addEventListener("click", () => {
       ChangeListItemToggle(listItemToAdd);
     });
     AddRemoveButtonToListItem(listItemToAdd);
-
     list.insertBefore(listItemToAdd, list.childNodes[0]);
   }
+
+  const closingYesButton = document.getElementById("modal-yes-button");
+  closingYesButton.addEventListener("click", () => {
+    lastRemovedListItem = listItemToRemove;
+    list.removeChild(listItemToRemove);
+    const returnButton = document.getElementById("return-button");
+    returnButton.className = "return-button-enable";
+    delModal.close();
+  });
+
+  const closingNoButton = document.getElementById("modal-no-button");
+  closingNoButton.addEventListener("click", () => {
+    delModal.close();
+  });
 };
 
+function CreateRandomText(min, max) {
+  length = Math.random() * (max - min) + min;
+  let result = "";
+  const characters =
+    "ABCD EFGHI JKLMNOP QRS TUVWXYZab cdefg hijklmnopq rstuvwx yz";
+  const charactersLength = characters.length;
+  let counter = 0;
+  while (counter < length) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    counter += 1;
+  }
+  return result;
+}
+
 const ReturnItem = () => {
-  if (lastRemovedListItemPosition !== -1) {
-    ChangeListItemToggle(lastRemovedListItem);
-    list.insertBefore(
-      lastRemovedListItem,
-      list.childNodes[lastRemovedListItemPosition]
-    );
-    lastRemovedListItemPosition = -1;
+  if (lastRemovedListItem != null) {
+    list.insertBefore(lastRemovedListItem, list.childNodes[0]);
+    lastRemovedListItem = null;
     const returnButton = document.getElementById("return-button");
     returnButton.className = "return-button-disable";
   }
@@ -65,14 +89,14 @@ const ChangeListItemToggle = (listItem) => {
 const AddRemoveButtonToListItem = (listItem) => {
   var button = document.createElement("BUTTON");
   button.addEventListener("click", () => {
-    lastRemovedListItem = listItem;
-    lastRemovedListItemPosition = Array.prototype.indexOf.call(
-      list.children,
-      listItem
-    );
-    list.removeChild(listItem);
-    const returnButton = document.getElementById("return-button");
-    returnButton.className = "return-button-enable";
+    listItemToRemove = listItem;
+    ChangeListItemToggle(listItem);
+    const modalText = document.getElementById("modal-text");
+    console.log(listItem);
+    modalText.innerText = `${listItem.innerText.split("×")[0]}`;
+
+    const delModal = document.getElementById("delete-modal");
+    delModal.showModal();
   });
   var txt = document.createTextNode("\u00D7");
   button.className = "close-list-item";

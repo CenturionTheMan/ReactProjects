@@ -10,7 +10,7 @@
 
   <body>
     <div class="content">
-      <h2>To-do List</h2>
+      <!-- <h2>To-do List</h2> -->
       <div class="header-input">
         <input type="text" id="inputField" placeholder="Add text ..." />
         <button onclick="AddNewListItem()" class="add-button">Add</button>
@@ -27,6 +27,17 @@
         <ul id="list"></ul>
       </div>
     </div>
+
+    <dialog id="delete-modal">
+      <div class="modal-content">
+        <h3>Czy na pewno chcesz usunać:</h3>
+        <p id="modal-text"></p>
+        <div class="modal-input">
+          <button id="modal-yes-button">TAK</button>
+          <button id="modal-no-button">NIE</button>
+        </div>
+      </div>
+    </dialog>
 
     <script src="./script.js"></script>
   </body>
