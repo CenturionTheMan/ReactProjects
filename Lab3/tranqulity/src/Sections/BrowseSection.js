@@ -1,78 +1,42 @@
 import arrow_img from "../Assets/Arrow.svg";
+import hotelsList from "../data";
+import { Link } from "react-router-dom";
 
 function BrowseSection() {
   return (
     <div className="BrowseSection">
-      <section id="browse" class="browse-section">
-        <p class="title-middle">Explore the hotels</p>
+      <section id="browse" className="browse-section">
+        <p className="title-middle">Explore the hotels</p>
         <input
-          class="searchbar"
+          className="searchbar"
           placeholder="Search by hotel name, place etc."
         />
-        <section class="grid hotel-cards">
-          <article class="hotel-card">
-            <div class="card-image">
-              <p class="chip">Florence</p>
-            </div>
-            <p class="text-middle">Harmony Hideaway Hotel</p>
-            <p class="text-small">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin
-              dapibus quis felis a venenatis. Suspendisse accumsan aliquam
-              lorem, sit amet ultricies justo tristique nec.
-            </p>
-            <div class="hotel-card-footer">
-              <p class="text-middle">★★★★★</p>
-              <p class="text-middle">100€/room</p>
-            </div>
-          </article>
-          <article class="hotel-card">
-            <div class="card-image">
-              <p class="chip">Florence</p>
-            </div>
-            <p class="text-middle">Harmony Hideaway Hotel</p>
-            <p class="text-small">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin
-              dapibus quis felis a venenatis. Suspendisse accumsan aliquam
-              lorem, sit amet ultricies justo tristique nec.
-            </p>
-            <div class="hotel-card-footer">
-              <p class="text-middle">★★★★★</p>
-              <p class="text-middle">100€/room</p>
-            </div>
-          </article>
-          <article class="hotel-card">
-            <div class="card-image">
-              <p class="chip">Florence</p>
-            </div>
-            <p class="text-middle">Harmony Hideaway Hotel</p>
-            <p class="text-small">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin
-              dapibus quis felis a venenatis. Suspendisse accumsan aliquam
-              lorem, sit amet ultricies justo tristique nec.
-            </p>
-            <div class="hotel-card-footer">
-              <p class="text-middle">★★★★★</p>
-              <p class="text-middle">100€/room</p>
-            </div>
-          </article>
-          <article class="hotel-card">
-            <div class="card-image">
-              <p class="chip">Florence</p>
-            </div>
-            <p class="text-middle">Harmony Hideaway Hotel</p>
-            <p class="text-small">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin
-              dapibus quis felis a venenatis. Suspendisse accumsan aliquam
-              lorem, sit amet ultricies justo tristique nec.
-            </p>
-            <div class="hotel-card-footer">
-              <p class="text-middle">★★★★★</p>
-              <p class="text-middle">100€/room</p>
-            </div>
-          </article>
+        <section className="grid hotel-cards">
+          {hotelsList.map((hotel) => (
+            <article key={hotel.id} className="hotel-card">
+              <Link to={`hotel`} className="link-style">
+                <div
+                  className="card-image"
+                  style={{
+                    backgroundImage: `url(${require(`../Assets/${hotel.img_card}`)})`,
+                  }}
+                >
+                  <p className="chip">{hotel.country}</p>
+                </div>
+                <div>
+                  <p className="text-middle">{hotel.name}</p>
+                  <p className="text-small">{hotel.text}</p>
+                  <div className="hotel-card-footer">
+                    <p className="text-middle">{hotel.stars}</p>
+                    <p className="text-middle">{hotel.price}</p>
+                  </div>
+                </div>
+              </Link>
+            </article>
+          ))}
         </section>
-        <button class="button secondary">
-          Find more <img src={arrow_img} />
+        <button className="button secondary">
+          Find more <img src={arrow_img} alt="Arrow" />
         </button>
       </section>
     </div>

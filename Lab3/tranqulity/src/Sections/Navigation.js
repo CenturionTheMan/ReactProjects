@@ -1,4 +1,5 @@
 import logo_img from "../Assets/logo.svg";
+import { Link } from "react-router-dom";
 
 function Navigation() {
   return (
@@ -7,9 +8,11 @@ function Navigation() {
         <img class="logo" src={logo_img} />
         <ul class="nav-links">
           <li>
-            <a class="nav-link" href="#">
-              Home
-            </a>
+            <Link to="/">
+              <a class="nav-link" href="#">
+                Home
+              </a>
+            </Link>
           </li>
           <li>
             <a class="nav-link" href="#browse">
