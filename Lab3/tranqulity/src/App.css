@@ -260,7 +260,7 @@ body {
 }
 
 .hero-cards > .card-image:nth-child(1) {
-  background-image: url(./Assets/heroSmall1.jpeg);
+  background-image: url(./Assets/heroSmall1.jpg);
 }
 
 .hero-cards > .card-image:nth-child(2) {

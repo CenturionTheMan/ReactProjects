@@ -24,7 +24,7 @@ function App() {
               </div>
             }
           />
-          <Route exact path="hotel" element={<HotelPage />} />
+          <Route exact path="hotel/:id" element={<HotelPage />} />
         </Routes>
       </Router>
     </div>

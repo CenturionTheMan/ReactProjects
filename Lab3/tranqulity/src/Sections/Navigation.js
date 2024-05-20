@@ -5,7 +5,9 @@ function Navigation() {
   return (
     <div className="Navigation">
       <nav class="fixed-navigation">
-        <img class="logo" src={logo_img} />
+        <Link to="/">
+          <img class="logo" src={logo_img} />
+        </Link>
         <ul class="nav-links">
           <li>
             <Link to="/">

@@ -14,7 +14,7 @@ function BrowseSection() {
         <section className="grid hotel-cards">
           {hotelsList.map((hotel) => (
             <article key={hotel.id} className="hotel-card">
-              <Link to={`hotel`} className="link-style">
+              <Link to={`hotel/${hotel.id}`} className="link-style">
                 <div
                   className="card-image"
                   style={{

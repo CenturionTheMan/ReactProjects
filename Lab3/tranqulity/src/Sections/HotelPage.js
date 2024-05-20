@@ -1,36 +1,32 @@
+import { useLocation } from "react-router-dom";
+import hotelsList from "../data";
+
 function HotelPage() {
+  const location = useLocation();
+  const id = location.pathname.split("/").pop();
+  const hotel = hotelsList.find((hotel) => hotel.id === parseInt(id));
+
   return (
     <div className="HotelPage">
       <section id="hero" className="grid hero-section">
-        <p className="text-middle-ex2">Serene Retreat</p>
-        <div className="hero-image-container-ex2"></div>
+        <p className="text-middle-ex2">{hotel.name}</p>
+        <div
+          className="hero-image-container-ex2"
+          style={{
+            backgroundImage: `url(${require(`../Assets/${hotel.image_large}`)})`,
+          }}
+        ></div>
 
         <article className="hero-details-ex2">
           <p className="text-small">
-            <span style={{ fontWeight: "bold" }}>Location:</span> Madrid <br />{" "}
-            <br />
-            <span style={{ fontWeight: "bold" }}>
-              Local category:
-            </span> ★★★★☆ <br /> <br />
-            <span style={{ fontWeight: "bold" }}>
-              Price
-            </span> 70€/room/night <br /> <br />
+            <span style={{ fontWeight: "bold" }}>Location:</span>{" "}
+            {hotel.country} <br /> <br />
+            <span style={{ fontWeight: "bold" }}>Local category:</span>{" "}
+            {hotel.stars} <br /> <br />
+            <span style={{ fontWeight: "bold" }}>Price</span> {hotel.price}
+            <br /> <br />
             <span style={{ fontWeight: "bold" }}>Description:</span>
-          </p>
-
-          <p className="text-middle ">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam nec leo
-            ligula. Etiam fermentum est in euismod egestas. Curabitur at
-            condimentum ligula. Phasellus nunc velit, facilisis fermentum congue
-            ac, cursus at leo. Interdum et malesuada fames ac ante ipsum primis
-            in faucibus. Nullam nec sapien vitae neque scelerisque tempus.
-            Vestibulum hendrerit tellus ut pulvinar feugiat. Nullam iaculis
-            vitae justo sit amet tempus. Nam nunc nunc, porttitor sed turpis
-            quis, feugiat egestas leo. Phasellus consequat magna ante, ac
-            aliquam felis convallis sit amet. Sed massa lorem, iaculis ac
-            vestibulum ac, tempus a tortor. Ut posuere ipsum nec condimentum
-            vehicula. Curabitur orci velit, aliquam vel arcu quis, semper congue
-            ligula.
+            <p className="text-middle ">{hotel.description}</p>
           </p>
 
           <div className="button-row-holder-ex2">
@@ -96,8 +92,20 @@ function HotelPage() {
           </div>
 
           <div className="hero-cards">
-            <div key="1" className="card-image"></div>
-            <div key="2" className="card-image"></div>
+            <div
+              // key="1"
+              className="card-image"
+              style={{
+                backgroundImage: `url(${require(`../Assets/${hotel.image_small1}`)})`,
+              }}
+            ></div>
+            <div
+              // key="2"
+              className="card-image"
+              style={{
+                backgroundImage: `url(${require(`../Assets/${hotel.image_small2}`)})`,
+              }}
+            ></div>
           </div>
         </article>
       </section>
