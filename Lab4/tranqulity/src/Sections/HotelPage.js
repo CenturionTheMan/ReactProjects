@@ -1,32 +1,48 @@
 import { useLocation } from "react-router-dom";
-import hotelsList from "../data";
+import { getHotelById, getHotels } from "../data/HotelDataService";
+import { useEffect, useState } from "react";
+import { useUser } from "../data/UserService";
+import { get } from "firebase/database";
 
 function HotelPage() {
   const location = useLocation();
   const id = location.pathname.split("/").pop();
-  const hotel = hotelsList.find((hotel) => hotel.id === parseInt(id));
+
+  const [hotelData, setHotelData] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    getHotelById(id).then((data) => {
+      setHotelData(data);
+      setIsLoading(false);
+    });
+  }, [id]);
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="HotelPage">
       <section id="hero" className="grid hero-section">
-        <p className="text-middle-ex2">{hotel.name}</p>
+        <p className="text-middle-ex2">{hotelData.name}</p>
         <div
           className="hero-image-container-ex2"
           style={{
-            backgroundImage: `url(${require(`../Assets/${hotel.image_large}`)})`,
+            backgroundImage: `url(${require(`../Assets/${hotelData.image_large}`)})`,
           }}
         ></div>
 
         <article className="hero-details-ex2">
           <p className="text-small">
             <span style={{ fontWeight: "bold" }}>Location:</span>{" "}
-            {hotel.country} <br /> <br />
+            {hotelData.country} <br /> <br />
             <span style={{ fontWeight: "bold" }}>Local category:</span>{" "}
-            {hotel.stars} <br /> <br />
-            <span style={{ fontWeight: "bold" }}>Price</span> {hotel.price}
+            {hotelData.stars} <br /> <br />
+            <span style={{ fontWeight: "bold" }}>Price</span> {hotelData.price}
             <br /> <br />
             <span style={{ fontWeight: "bold" }}>Description:</span>
-            <p className="text-middle ">{hotel.description}</p>
+            <p className="text-middle ">{hotelData.main_description}</p>
           </p>
 
           <div className="button-row-holder-ex2">
@@ -96,14 +112,14 @@ function HotelPage() {
               // key="1"
               className="card-image"
               style={{
-                backgroundImage: `url(${require(`../Assets/${hotel.image_small1}`)})`,
+                backgroundImage: `url(${require(`../Assets/${hotelData.image_small1}`)})`,
               }}
             ></div>
             <div
               // key="2"
               className="card-image"
               style={{
-                backgroundImage: `url(${require(`../Assets/${hotel.image_small2}`)})`,
+                backgroundImage: `url(${require(`../Assets/${hotelData.image_small2}`)})`,
               }}
             ></div>
           </div>

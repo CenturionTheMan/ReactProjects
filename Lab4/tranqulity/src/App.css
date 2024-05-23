@@ -416,11 +416,12 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   width: 30%;
+  min-height: 330px;
   height: 50%;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center; /* This will center elements vertically */
+  align-items: center;
   background-color: var(--neutral);
   padding: 30px;
   border-radius: var(--radius-medium);
@@ -429,14 +430,14 @@ body {
 .auth-modal > h2 {
   font-size: 24px;
   margin-top: 10px;
-  margin-bottom: 24px;
+  margin-bottom: 15px;
 }
 
 .auth-modal > form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  row-gap: 15px;
+  row-gap: 1vh;
   width: 100%;
 }
 
@@ -456,6 +457,20 @@ body {
   padding: 10px;
   border: 1px solid var(--primary-dark);
   border-radius: var(--radius-small);
+}
+
+.hotel-cards-browse {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 24px;
+}
+
+.hotel-card-browse {
+  padding: 15px;
+  flex: 0 0 20vw; /* Adjust this to control the width of the cards */
+  border-radius: 10px; /* Optional: to give the cards rounded corners */
+  background-color: var(--white);
 }
 
 @media screen and (max-width: 768px) {

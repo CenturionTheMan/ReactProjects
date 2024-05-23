@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import Modal from "react-modal";
 import { signupDefault, loginDefault, loginGogle } from "../data/UserService";
 import { useNavigate } from "react-router-dom";
+import { SetHotelsData } from "../Sections/BrowseSection";
+
 Modal.setAppElement("#root");
 
 export function LoginModal({ modalIsOpen, setModalIsOpen, setUserIsLoggedIn }) {
