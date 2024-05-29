@@ -6,6 +6,8 @@ import HeroSection from "./Sections/HeroSection";
 import BrowseSection from "./Sections/BrowseSection";
 import Footer from "./Sections/Footer";
 import HotelPage from "./Sections/HotelPage";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
@@ -18,15 +20,20 @@ function App() {
             path="/"
             element={
               <div>
-                <HeroSection />
+                <section class="entry">
+                  <p class="entry-text">
+                    Welcome, your tranquillity oasis awaits
+                  </p>
+                </section>
                 <BrowseSection />
-                <Footer />
+                {/* <Footer /> */}
               </div>
             }
           />
           <Route exact path="hotel/:id" element={<HotelPage />} />
         </Routes>
       </Router>
+      <ToastContainer />
     </div>
   );
 }

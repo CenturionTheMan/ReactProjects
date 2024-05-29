@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Modal from "react-modal";
 import { signupDefault, loginDefault, loginGogle } from "../data/UserService";
 import { useNavigate } from "react-router-dom";
-import { SetHotelsData } from "../Sections/BrowseSection";
+import { toast } from "react-toastify";
 
 Modal.setAppElement("#root");
 
@@ -17,9 +17,10 @@ export function LoginModal({ modalIsOpen, setModalIsOpen, setUserIsLoggedIn }) {
       await loginDefault(loginEmail, loginPassword);
       setUserIsLoggedIn(true);
       setModalIsOpen(false);
-      console.log("User logged in");
+      toast.success("Logged in successfully");
     } catch (error) {
       console.error(error);
+      toast.error("Login failed\nError: " + error.message);
     }
   };
 
@@ -28,9 +29,10 @@ export function LoginModal({ modalIsOpen, setModalIsOpen, setUserIsLoggedIn }) {
       await loginGogle(navigate);
       setUserIsLoggedIn(true);
       setModalIsOpen(false);
-      console.log("User logged in with Google");
+      toast.success("Logged in successfully");
     } catch (error) {
       console.error(error);
+      toast.error("Google login failed\nError: " + error.message);
     }
   };
 
@@ -86,9 +88,10 @@ export function SignupModal({ modalIsOpen, setModalIsOpen }) {
     try {
       await signupDefault(signupEmail, signupPassword);
       setModalIsOpen(false);
-      console.log("User signed up");
+      toast.success("Signed up successfully");
     } catch (error) {
       console.error(error);
+      toast.error("Signup failed\nError: " + error.message);
     }
   };
 

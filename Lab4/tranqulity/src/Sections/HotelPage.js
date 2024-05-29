@@ -3,6 +3,7 @@ import { getHotelById, getHotels } from "../data/HotelDataService";
 import { useEffect, useState } from "react";
 import { useUser } from "../data/UserService";
 import { get } from "firebase/database";
+import { MailModal } from "../Components/MailModals";
 
 function HotelPage() {
   const location = useLocation();
@@ -10,6 +11,7 @@ function HotelPage() {
 
   const [hotelData, setHotelData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
+  const [mailModalIsOpen, setMailModalIsOpen] = useState(false);
 
   useEffect(() => {
     getHotelById(id).then((data) => {
@@ -26,12 +28,7 @@ function HotelPage() {
     <div className="HotelPage">
       <section id="hero" className="grid hero-section">
         <p className="text-middle-ex2">{hotelData.name}</p>
-        <div
-          className="hero-image-container-ex2"
-          style={{
-            backgroundImage: `url(${require(`../Assets/${hotelData.image_large}`)})`,
-          }}
-        ></div>
+        <div className="hero-image-container-ex2"></div>
 
         <article className="hero-details-ex2">
           <p className="text-small">
@@ -46,7 +43,12 @@ function HotelPage() {
           </p>
 
           <div className="button-row-holder-ex2">
-            <button className="button primary button-ex2">
+            <button
+              className="button primary button-ex2"
+              onClick={() => {
+                if (useUser != null) setMailModalIsOpen(true);
+              }}
+            >
               Contact{" "}
               <svg
                 width="18"
@@ -125,6 +127,11 @@ function HotelPage() {
           </div>
         </article>
       </section>
+
+      <MailModal
+        modalIsOpen={mailModalIsOpen}
+        setModalIsOpen={setMailModalIsOpen}
+      />
     </div>
   );
 }

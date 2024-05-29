@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { SignupModal, LoginModal } from "../Components/AuthModals";
 import React, { useState } from "react";
 import { logout } from "../data/UserService";
+import { toast } from "react-toastify";
 
 function Navigation() {
   const [signupModalIsOpen, setSignupModalIsOpen] = useState(false);
@@ -12,6 +13,7 @@ function Navigation() {
   const handleLogout = async () => {
     await logout();
     setUserIsLoggedIn(false);
+    toast.success("Logged out successfully");
   };
 
   return (
