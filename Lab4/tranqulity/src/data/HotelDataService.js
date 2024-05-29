@@ -12,8 +12,34 @@ import {
 } from "firebase/firestore";
 import { firestore, auth } from "../Firebase";
 
+export const removeHotel = async (hotelId) => {
+  if (!auth.currentUser) return false;
+
+  const hotelRef = doc(firestore, "hotels", hotelId);
+  const hotelSnap = await getDoc(hotelRef);
+
+  if (!hotelSnap.exists()) {
+    console.error("Error: Hotel does not exist");
+    return false;
+  }
+
+  if (hotelSnap.data().userId !== auth.currentUser.uid) {
+    console.error("Error: User does not have permission to delete this hotel");
+    return false;
+  }
+
+  try {
+    await deleteDoc(hotelRef);
+    console.log("Document deleted with ID: ", hotelId);
+    return true;
+  } catch (e) {
+    console.error("Error removing document: ", e);
+    return false;
+  }
+};
+
 export const createHotel = async (hotel) => {
-  if (!auth.currentUser) return;
+  if (!auth.currentUser) return null;
 
   try {
     const docRef = await addDoc(collection(firestore, "hotels"), {

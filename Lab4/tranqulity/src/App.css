@@ -415,9 +415,9 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 30%;
+  width: 50%;
   min-height: 330px;
-  height: 50%;
+  height: fit-content;
   display: flex;
   flex-direction: column;
   justify-content: center;

@@ -3,13 +3,16 @@ import { Link } from "react-router-dom";
 import { getHotels } from "../data/HotelDataService";
 import { useEffect, useState } from "react";
 import { useUser } from "../data/UserService";
+import { CreateHotelModal } from "../Components/HotelCreateModal";
 
 function BrowseSection() {
+  const [createHotelModalIsOpen, setCreateHotelModalIsOpen] = useState(false);
+
   const [hotelsData, setHotelsData] = useState([]);
   const user = useUser();
   useEffect(() => {
     getHotels().then((data) => setHotelsData(data));
-  }, [user]);
+  }, [user, createHotelModalIsOpen]);
 
   return (
     <div className="BrowseSection">
@@ -59,10 +62,17 @@ function BrowseSection() {
             </article>
           ))}
         </section>
-        <button className="button secondary">
+        <button
+          className="button secondary"
+          onClick={() => setCreateHotelModalIsOpen(true)}
+        >
           Add new <img src={arrow_img} alt="Arrow" />
         </button>
       </section>
+      <CreateHotelModal
+        modalIsOpen={createHotelModalIsOpen}
+        setModalIsOpen={setCreateHotelModalIsOpen}
+      />
     </div>
   );
 }
